@@ -1,6 +1,6 @@
 package erratum
 
-func Use(opener func() (Resource, error), s string) (err error) {
+func Use(opener func() (Resource, error), s string) (err error) { // 这里一定需要使用named return value，如果把err定义在函数里面，然后`return err`的话，虽然defer函数里面设置了err，但是在Use函数返回后err还是nil。
 	resource, err := opener()
 	for {
 		if err != nil {
